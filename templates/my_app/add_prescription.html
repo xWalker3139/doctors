@@ -1,0 +1,48 @@
+{% extends 'my_app/home.html' %}
+
+{% block head_block %}
+<style>
+    #jumbotron7{
+        background-color: #30AADD;
+    }
+    .header2{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        color: #fff;
+        text-align: center;
+    }
+    #form2{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="jumbotron" id="jumbotron7">
+    <div class="container">
+        <h1 class="header2">- Add Prescription -</h1>
+    </div>
+</div>
+<div class="banner3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-4 col-sm-6">
+                <form method="POST" action="" class="form-group" id="form2">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <input type="submit" class="btn btn-outline-info btn-block">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jumbotron" id="jumbotron5" style="margin-top: 5rem;">
+    <p class="param1">© Copyright {{date_posted}} - Healthcare Emr - All rights reserved</p>
+</div>
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById('user1').value = name;
+</script>
+{% endblock %}

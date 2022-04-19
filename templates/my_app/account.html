@@ -1,0 +1,134 @@
+{% extends 'my_app/home.html' %}
+
+{% block head_block %}
+<style>
+    #jumbotron6{
+        background-color: #30AADD;
+    }
+    .header2{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        color: #fff;
+        text-align: center;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    .header3{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+    }
+    .param2{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        font-size: 18px;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="jumbotron" id="jumbotron6">
+    <div class="container">
+        <h1 class="header2">- Hello {{request.user}} -</h1>
+    </div>
+</div>
+<div class="banner2">
+    <div class="container">
+        <h2 class="header3">Personal information:</h2>
+        <hr>
+        <p class="param2">Username: {{request.user}}</p>
+        <p class="param2">E-mail: {{request.user.email}}</p>
+        <br>
+        <h2 class="header3">All patients added: {{user_model.count}}</h2>
+        <br>
+        <table>
+            <tr>
+                <th>Name:</th>
+                <th>Edit:</th>
+                <th>Delete:</th>
+            </tr>
+            {% for data in user_model %}
+            <tr>
+                <td>{{data.first_name}} {{data.last_name}}</td>
+                <td><a href="{% url 'update_patients' pk=data.pk %}" class="btn btn-info">Edit</a></td>
+                <td><a href="{% url 'delete_patients' pk=data.pk %}" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <h2 class="header3">All prescription added: {{user_model.count}}</h2>
+        <br>
+        <table>
+            <tr>
+                <th>Drugs:</th>
+                <th>Edit:</th>
+                <th>Delete:</th>
+                <th>Send:</th>
+            </tr>
+            {% for data2 in user_model2 %}
+            <tr>
+                <td>{{data2.drugs}}</td>
+                <td><a href="{% url 'update_prescription' pk=data2.pk %}" class="btn btn-info">Edit</a></td>
+                <td><a href="{% url 'delete_prescription' pk=data2.pk %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="" class="btn btn-primary">Send Via Email</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <h2 class="header3">All clinicals added: {{user_model.count}}</h2>
+        <br>
+        <table>
+            <tr>
+                <th>Type scan:</th>
+                <th>Edit:</th>
+                <th>Delete:</th>
+                <th>Send:</th>
+            </tr>
+            {% for data3 in user_model3 %}
+            <tr>
+                <td>{{data3.type_scan}}</td>
+                <td><a href="{% url 'update_scan' pk=data3.pk %}" class="btn btn-info">Edit</a></td>
+                <td><a href="{% url 'delete_scan' pk=data3.pk %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="" class="btn btn-primary">Send Via Email</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <h2 class="header3">All labs added: {{user_model.count}}</h2>
+        <br>
+        <table>
+            <tr>
+                <th>Type X-Ray:</th>
+                <th>Edit:</th>
+                <th>Delete:</th>
+                <th>Send:</th>
+            </tr>
+            {% for data4 in user_model4 %}
+            <tr>
+                <td>{{data4.type_x_ray}}</td>
+                <td><a href="{% url 'update_x_ray' pk=data4.pk %}" class="btn btn-info">Edit</a></td>
+                <td><a href="{% url 'delete_x_ray' pk=data4.pk %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="" class="btn btn-primary">Send Via Email</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'logout_user' %}" class="btn btn-outline-danger" style="margin-top: 30px;">Logout</a>
+    </div>
+</div>
+<div class="jumbotron" id="jumbotron5" style="margin-top: 3rem;">
+    <p class="param1">© Copyright {{date_posted}} - Healthcare Emr - All rights reserved</p>
+</div>
+{% endblock %}

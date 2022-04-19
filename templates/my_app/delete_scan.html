@@ -1,0 +1,50 @@
+{% extends 'my_app/home.html' %}
+
+{% block head_block %}
+<style>
+    #jumbotron4{
+        background-color: #30AADD;
+    }
+    .header2{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+        color: #fff;
+        text-align: center;
+    }
+    #form{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bolder;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+<div class="jumbotron" id="jumbotron4">
+    <div class="container">
+        <h1 class="header2">- Delete Scan Report -</h1>
+    </div>
+</div>
+<div class="banner2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-4 col-sm-6">
+                <h1 style="font-family: 'Montserrat', sans-serif;font-weight: bolder;">Are you sure you want delete this?</h1>
+                <br>
+                <form class="form-group" method="POST" action="" id="form">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete", class="btn btn-outline-danger btn-block">
+                    <br>
+                    <a href="{% url 'my_account' user.pk %}" class="btn btn-outline-primary btn-block">Go back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jumbotron" id="jumbotron5" style="margin-top: 10rem;">
+    <p class="param1">© Copyright {{date_posted}} - Healthcare Emr - All rights reserved</p>
+</div>
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById('user1').value = name;
+</script>
+{% endblock %}

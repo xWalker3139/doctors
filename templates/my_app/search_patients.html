@@ -1,0 +1,46 @@
+{% extends 'my_app/home.html' %}
+
+{% block head_block %}
+
+{% endblock %}
+
+{% block body_block %}
+<div class="jumbotron">
+    <div class="container">
+        <form method="POST" class="form-group" action="{% url 'search_patients' %}">
+            {% csrf_token %}
+            <div class="input-group mb-3 input-group-lg">
+                <div class="input-group-prepend">
+                    <input type="submit" value="Search" class="search">
+                </div>
+                <input type="Search" class="form-control" name="first_name" placeholder="Search for patients..." autocomplete="off" required>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="banner">
+    <div class="container">
+        <h1 class="header1">All patients: {{ model.count }}</h1>
+        <br>
+        <table>
+            <tr>
+                <th>Name:</th>
+                <th>Add Prescription:</th>
+                <th>Add Scan Report:</th>
+                <th>Add X-Ray Report:</th>
+            </tr>
+            {% for data in model %}
+                <tr>
+                    <td>{{data.first_name}} {{data.last_name}}</td>
+                    <td><a href="{% url 'add_prescription' %}" class="btn btn-info">Prescription</a></td>
+                    <td><a href="{% url 'add_scan' %}" class="btn btn-success">Scan Report</a></td>
+                    <td><a href="{% url 'add_x_ray' %}" class="btn btn-warning">X-Ray Report</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<div class="jumbotron" id="jumbotron5">
+    <p class="param1">© Copyright {{date_posted}} - Healthcare Emr - All rights reserved</p>
+</div>
+{% endblock %}
